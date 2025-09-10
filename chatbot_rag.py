@@ -8,7 +8,7 @@ from langchain_core.documents import Document
 import gradio as gr
 import os, re, requests
 
-# load .env for HF_KEY
+
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -121,7 +121,7 @@ def evaluate_cv_against_job(cv_doc, job_doc):
     return resp.choices[0].message.content
 
 def match_job_to_cvs(job_url, k=3):
-    # try retrieving job from DB
+    # retrieving job from DB
     job_docs = job_store.similarity_search(job_url, k=1)
     if not job_docs:
         ingest_job(job_url)
@@ -140,7 +140,7 @@ def match_job_to_cvs(job_url, k=3):
 
 # --- chatbot ---
 def respond(message, history):
-    if "zangia.mn/job" in message:   # detect job link
+    if "zangia.mn/job" in message:   #  job link
         answer = match_job_to_cvs(message, k=3)
         yield history + [{"role": "user", "content": message},
                          {"role": "assistant", "content": answer}]
