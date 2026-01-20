@@ -6,4 +6,5 @@ langchain-huggingface==0.0.11
 requests==2.31.0
 python-dotenv==1.0.0
 openai==0.27.10
-pypdf==3.16.0
+pypdf==6.6.0
+urllib3>=2.6.3 # not directly required, pinned by Snyk to avoid a vulnerability
